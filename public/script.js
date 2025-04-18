@@ -13,7 +13,7 @@ myVideo.muted = true;
 // });
 
 var peer = new Peer(undefined, {
-  host: "https://videocall-ado8.onrender.com",
+  host: "videocall-ado8.onrender.com",
   port: 443, // 👈 use 443 for HTTPS
   path: "/peerjs",
   secure: true, // 👈 tells PeerJS to use HTTPS (important for browsers)

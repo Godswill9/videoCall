@@ -22,15 +22,23 @@ app.get("/:room", (req, res) => {
   res.render("room", { roomId: req.params.room });
 });
 
+
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
     socket.join(roomId);
     socket.to(roomId).broadcast.emit("user-connected", userId);
 
+    // Handle messages
     socket.on("message", (message) => {
       io.to(roomId).emit("createMessage", message);
     });
+
+    // Notify others when a user disconnects
+    socket.on("disconnect", () => {
+      socket.to(roomId).broadcast.emit("user-disconnected", userId);
+    });
   });
 });
+
 
 server.listen(process.env.PORT || 3030);

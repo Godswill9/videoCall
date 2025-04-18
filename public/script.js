@@ -6,10 +6,17 @@ const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
 
+// var peer = new Peer(undefined, {
+//   path: "/peerjs",
+//   host: "/",
+//   port: "3030",
+// });
+
 var peer = new Peer(undefined, {
+  host: "https://videocall-ado8.onrender.com",
+  port: 443, // 👈 use 443 for HTTPS
   path: "/peerjs",
-  host: "/",
-  port: "3030",
+  secure: true, // 👈 tells PeerJS to use HTTPS (important for browsers)
 });
 
 let myVideoStream;
